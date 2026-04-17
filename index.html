@@ -3,7 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using Claude Code to Ship Features as a PM</title>
+  <title>Stop Nagging Your Engineer</title>
+  <script>
+    (function() {
+      var answer = prompt("Datavant Internal\n\nFinish the sentence: \"Stop nagging your ___.\"\n\n(case insensitive)");
+      if (!answer || answer.trim().toLowerCase() !== "engineer") {
+        document.write("<div style='font-family:sans-serif;text-align:center;padding:80px;'><h2>Access denied.</h2></div>");
+        document.close();
+      }
+    })();
+  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -262,8 +271,8 @@
 <body>
 
   <div class="hero">
-    <h1>Using Claude Code to Ship Features as a PM</h1>
-    <p>How to think like an engineer when you're not one — and ship the backlog that's been sitting there for months.</p>
+    <h1>Stop Nagging Your Engineer</h1>
+    <p>How PMs can ship the small stuff themselves — and free engineers for the work that actually matters.</p>
   </div>
 
   <div class="container">
@@ -271,20 +280,20 @@
     <!-- THE PROBLEM -->
     <section>
       <span class="label">The Problem</span>
-      <h2>Enhancement requests with no engineering capacity</h2>
-      <p>You have a backlog of enhancement requests that engineering doesn't have capacity for. Not because the requests aren't valuable — because there's one engineer, there's a bigger roadmap, and "add a column" never beats "build the feature that unblocks three clients."</p>
-      <p>For a while, those small tickets sat. Stakeholders asked. PMs shrugged. Engineers apologized. Nothing moved.</p>
-      <p><strong>Claude Code changed that.</strong> But using it well isn't just about having the tool — it's about knowing how to think through a codebase, when to move forward, and when to stop and ask an engineer. I've been on both sides of that line, and what I've learned is that the gap between "PM" and "can ship small features" is mostly about process, not syntax.</p>
-      <p>Here's the playbook.</p>
+      <h2>The ticket that's been in the backlog for three sprints</h2>
+      <p>You know the one. A stakeholder wants a label changed, a column added, a field reordered. One point. Maybe 20 minutes of work. And it just... sits there, because "rename a button" never beats "ship the thing that unblocks three clients."</p>
+      <p>Stakeholders ask. PMs shrug - "It's in the backlog". Engineers apologize. Nobody's wrong — there's just limited capacity and a very long list.</p>
+      <p>Now, instead of nagging my engineer, I just nag Claude. Claude never has anything more important to work on.</p>
+      <p>Here's how.</p>
     </section>
 
     <!-- WHO AM I -->
     <section>
       <span class="label">Context</span>
       <h2>30 seconds on me and HubPay</h2>
-      <p>I'm a PM at Datavant. I worked on <strong>HubPay</strong>, the Finance UI for our medical records retrieval platform — invoice management, payment approvals, vendor coordination.</p>
-      <p>My engineering team was <strong>one person</strong>. We had no shortage of stakeholder requests. We had a very short supply of engineering hours.</p>
-      <p>That mismatch is where Claude Code became useful.</p>
+      <p>I'm a PM at Datavant. I worked on <strong>HubPay</strong>, the Finance UI for non-embedded medical records retrieval — paying providers and vendors — invoices, approvals, the whole paper trail.</p>
+      <p>We were replacing a legacy system as part of our transition to Switchboard from ChartFinder.</p>
+      <p>We had a small engineering team of 1 - 2 at any given time, but no shortage of stakeholder requests.</p>
     </section>
 
     <!-- LIVE DEMO -->
@@ -353,54 +362,58 @@
     <!-- GETTING SET UP -->
     <section>
       <span class="label">Before You Start</span>
-      <h2>Work with your EM first</h2>
-      <p>Before you ship anything, have a conversation with your engineering manager. Cover:</p>
+      <h2>Know the house rules before you move in</h2>
+      <p>Have a quick conversation with your EM before you touch anything. It takes 20 minutes and saves a lot of awkward explanations later.</p>
       <ul>
         <li><strong>Repository access</strong> — make sure you can clone the repo and have the right permissions</li>
         <li><strong>Branch naming conventions</strong> — know how your team names branches</li>
         <li><strong>PR process</strong> — approvals, automated tests, who reviews</li>
         <li><strong>What's in bounds</strong> — agree on what types of changes are PM-safe</li>
-        <li><strong>Always open draft PRs</strong> — don't mark ready until you've tested locally and your EM has signed off</li>
+        <li><strong>Open draft PRs</strong> — don't mark ready until you've tested locally and your EM has signed off</li>
       </ul>
-      <p>Think of it like getting a contractor badge to a building. You can enter and do real work, but there are rooms you don't go into without an escort.</p>
+      <p>It's their house. You're a guest with a key.</p>
     </section>
 
     <!-- 3 LESSONS -->
     <section>
-      <span class="label">Lessons Learned</span>
-      <h2>3 things I wish I knew earlier</h2>
+      <span class="label">Tips</span>
+      <h2>A few things I learned</h2>
 
       <!-- LESSON 1 -->
       <div class="lesson-header" style="margin-top: 32px;">
         <span class="lesson-number">1</span>
-        <h3>Know what's in your lane</h3>
+        <h3>Before you say yes...scope it with Claude</h3>
       </div>
-      <div class="in-your-lane">
-        <div class="lane-box yes">
-          <h4>✓ PM-safe</h4>
-          <ul>
-            <li>Copy and text changes</li>
-            <li>Adding columns with existing data</li>
-            <li>Reordering or restyling existing UI elements</li>
-          </ul>
+      <p>A stakeholder asked: "Can you add the wave number to HubPay?" Sounds like a simple field. I asked Claude to scope it first.</p>
+
+      <div class="conversation">
+        <div class="turn">
+          <div class="speaker me">Me</div>
+          <div class="text">Our users asked if we could add wave number to HubPay since this will help them separate out the different projects from a client. Can you take a look and let me know what changes need to be made? I assume it's a simple add. Switchboard has this info.</div>
         </div>
-        <div class="lane-box no">
-          <h4>✗ Loop in your engineer</h4>
-          <ul>
-            <li>Database or data model changes</li>
-            <li>Impacts multiple systems or teams</li>
-            <li>Eventing and APIs</li>
-          </ul>
+        <div class="turn">
+          <div class="speaker claude">Claude</div>
+          <div class="text">
+            Let me search for it. <em>(searches codebase)</em><br><br>
+            Wave number doesn't exist anywhere in Hub — not on any model, not in any event schema, not in any API response. So this isn't a display change; the data isn't here yet.<br><br>
+            Hub receives retrieval target data from Switchboard via DEDA events. Let me check what fields those events currently carry. <em>(checks event payload schema)</em><br><br>
+            Wave number isn't in the payload Hub receives from Switchboard. To show it in HubPay, you'd need:<br><br>
+            1. <strong>Switchboard to include wave number in the DEDA event it sends to Hub</strong> — that's a change on their side<br>
+            2. <strong>Hub to capture and store it</strong> — a new field on the model plus a migration, which is engineering work<br>
+            3. <strong>Then display it in the Finance UI</strong> — that part you could do yourself, but only after 1 and 2 are done<br><br>
+            Steps 1 and 2 require coordination with the Switchboard team. Worth flagging with your EM before this goes anywhere.
+          </div>
         </div>
       </div>
-      <p>The pattern: you're rearranging or relabeling things that already exist. You're not creating new data, new connections, or new behavior.</p>
+
+      <p>In 5 minutes I had confirmation it wasn't a quick PM fix, a clear explanation of why, and the right framing to reset expectations with the stakeholder. The output wasn't code — it was a better ticket and a smarter conversation.</p>
 
       <!-- LESSON 2 -->
       <div class="lesson-header" style="margin-top: 48px;">
         <span class="lesson-number">2</span>
-        <h3>Ask "what else does this touch?" before you change anything</h3>
+        <h3>Ask what else it touches</h3>
       </div>
-      <p>A ticket to "add the provider TIN to invoice line items" sounded like a column add. I implemented it, tested it, and saw this:</p>
+      <p>A ticket to "add the provider TIN to invoice line items" scoped fine. The data existed, I just had to show it. I implemented it, tested it, and saw this:</p>
 
       <img src="images/tin.png" alt="Finance UI showing Other for non-HIH-Major TINs" style="width:100%; border-radius:8px; border:1px solid #e0e0db; margin: 24px 0;" />
 
@@ -436,31 +449,27 @@
       <!-- LESSON 3 -->
       <div class="lesson-header" style="margin-top: 48px;">
         <span class="lesson-number">3</span>
-        <h3>Use Claude to understand tickets you shouldn't implement</h3>
+        <h3>Some changes are simple. Learn to spot them — then go for it.</h3>
       </div>
-      <p>A stakeholder asked: "Can you add the wave number to HubPay?" Sounds like a simple field. I asked Claude to scope it first.</p>
-
-      <div class="conversation">
-        <div class="turn">
-          <div class="speaker me">Me</div>
-          <div class="text">Our users asked if we could add wave number to HubPay since this will help them separate out the different projects from a client. Can you take a look and let me know what changes need to be made? I assume it's a simple add. Switchboard has this info.</div>
+      <div class="in-your-lane">
+        <div class="lane-box yes">
+          <h4>✓ Go for it</h4>
+          <ul>
+            <li>Copy and text changes</li>
+            <li>Adding columns with existing data</li>
+            <li>Reordering or restyling existing UI elements</li>
+          </ul>
         </div>
-        <div class="turn">
-          <div class="speaker claude">Claude</div>
-          <div class="text">
-            Let me search for it. <em>(searches codebase)</em><br><br>
-            Wave number doesn't exist anywhere in Hub — not on any model, not in any event schema, not in any API response. So this isn't a display change; the data isn't here yet.<br><br>
-            Hub receives retrieval target data from Switchboard via DEDA events. Let me check what fields those events currently carry. <em>(checks event payload schema)</em><br><br>
-            Wave number isn't in the payload Hub receives from Switchboard. To show it in HubPay, you'd need:<br><br>
-            1. <strong>Switchboard to include wave number in the DEDA event it sends to Hub</strong> — that's a change on their side<br>
-            2. <strong>Hub to capture and store it</strong> — a new field on the model plus a migration, which is engineering work<br>
-            3. <strong>Then display it in the Finance UI</strong> — that part you could do yourself, but only after 1 and 2 are done<br><br>
-            Steps 1 and 2 require coordination with the Switchboard team. Worth flagging with your EM before this goes anywhere.
-          </div>
+        <div class="lane-box no">
+          <h4>📞 Phone a friend</h4>
+          <ul>
+            <li>Database or data model changes</li>
+            <li>Impacts multiple systems or teams</li>
+            <li>Eventing and APIs</li>
+          </ul>
         </div>
       </div>
-
-      <p>In 5 minutes I had confirmation it wasn't a quick PM fix, a clear explanation of why, and the right framing to reset expectations with the stakeholder. The output wasn't code — it was a better ticket and a smarter conversation.</p>
+      <p>Between Claude, local tests, and engineer review, there are a lot of checkpoints before anything reaches prod. Try the change. Something has to go very wrong for bad code to get there.</p>
     </section>
 
     <!-- MEMORY CAVEAT -->
@@ -479,10 +488,10 @@
   <!-- CLOSING -->
   <div class="closing">
     <div class="container">
-      <p>The work that used to require a developer ticket, a sprint slot, code review, and a deploy — renaming a label, adding a column, reordering fields — now happens in a conversation.</p>
-      <p>That doesn't eliminate the need for engineers. It changes what they spend their time on.</p>
+      <p>Renaming a label, adding a column, reordering fields — these used to need precious engineering hours. Now they need you, Claude, and an hour (give or take).</p>
       <p>The PMs who get the most out of this aren't the ones who use it to go faster. They're the ones who use it to go further — asking better questions, scoping tickets more accurately, and shipping the small things so their engineers can focus on the hard ones.</p>
-      <p>You don't need to become an engineer. You need to know how to think like one long enough to get the job done.</p>
+      <p>One caveat: every PR still needs an engineer's eyes. The goal isn't to flood their review queue — it's to make sure the things that land there are worth their time.</p>
+      <p>You don't need to become an engineer. You just need to know when to nag Claude and when to phone a friend.</p>
     </div>
   </div>
 
