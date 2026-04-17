@@ -346,7 +346,7 @@
       <div class="gate-eyebrow">Datavant Internal</div>
       <p class="gate-instruction">Finish the sentence:</p>
       <h2>"Stop nagging your ______."</h2>
-      <input id="gate-input" type="text" placeholder="Type your answer..." autocomplete="off" />
+      <input id="gate-input" type="text" placeholder="Type your answer..." autocomplete="off" autofocus />
       <div id="gate-error" class="gate-error">Not quite — try again.</div>
     </div>
   </div>
@@ -376,15 +376,29 @@
       <h2>30 seconds on me and HubPay</h2>
       <p>I'm a PM at Datavant. I worked on <strong>HubPay</strong>, the Finance UI for non-embedded medical records retrieval — paying providers and vendors — invoices, approvals, the whole paper trail.</p>
       <p>We were replacing a legacy system as part of our transition to Switchboard from ChartFinder.</p>
-      <p>We had a small engineering team of 1 - 2 at any given time, but no shortage of stakeholder requests.</p>
+      <p>We had a small engineering team of 1 - 2 at any given time but no shortage of stakeholder requests.</p>
+    </section>
+
+    <!-- GETTING SET UP -->
+    <section>
+      <span class="label">Before You Start</span>
+      <h2>Know the house rules before you move in</h2>
+      <p>Have a quick conversation with your EM before you touch anything.</p>
+      <ul>
+        <li><strong>Repository access</strong> — make sure you can clone the repo and have the right permissions</li>
+        <li><strong>Branch naming conventions</strong> — know how your team names branches</li>
+        <li><strong>PR process</strong> — approvals, automated tests, who reviews</li>
+        <li><strong>What's in bounds</strong> — agree on what types of changes are PM-safe</li>
+      </ul>
+      <p>It's their house. You're a guest with a key.</p>
     </section>
 
     <!-- LIVE DEMO -->
     <section>
       <span class="label">Live Demo</span>
-      <h2>Example 1 — The Rename</h2>
-      <p>A stakeholder told us that AP users were confused by the label "Upload Artifacts" — they had no idea what an artifact was. We agreed to rename it to "Upload History."</p>
-      <p>One point. Maybe 15 minutes of engineering time. Had been sitting in the backlog for two sprints.</p>
+      <h2>The Rename</h2>
+      <p>Our stakeholder told us they were confused by the label "Upload Artifacts" — they had no idea what an artifact was. We agreed to rename it to "Upload History."</p>
+      <p>One point. Maybe 15 minutes of engineering time. Had been sitting in the backlog for a few sprints.</p>
 
       <h3>Before</h3>
       <img src="images/before-upload-artifacts.png" alt="Finance UI showing Upload Artifacts label" style="width:100%; border-radius:8px; border:1px solid #e0e0db; margin: 24px 0;" />
@@ -436,25 +450,10 @@
       <img src="images/after-upload-history.png" alt="Finance UI showing Upload History label" style="width:100%; border-radius:8px; border:1px solid #e0e0db; margin: 24px 0;" />
 
       <div class="callout">
-        Next steps in a real workflow: open a draft PR, add screenshots for reviewers, tag your EM for a quick look before merging.
+        Next steps in a real workflow: open a draft PR, add screenshots, mark it ready for review by engineers.
       </div>
 
-      <p><strong>Total time: ~10 minutes. Zero engineer involvement.</strong></p>
-    </section>
-
-    <!-- GETTING SET UP -->
-    <section>
-      <span class="label">Before You Start</span>
-      <h2>Know the house rules before you move in</h2>
-      <p>Have a quick conversation with your EM before you touch anything. It takes 20 minutes and saves a lot of awkward explanations later.</p>
-      <ul>
-        <li><strong>Repository access</strong> — make sure you can clone the repo and have the right permissions</li>
-        <li><strong>Branch naming conventions</strong> — know how your team names branches</li>
-        <li><strong>PR process</strong> — approvals, automated tests, who reviews</li>
-        <li><strong>What's in bounds</strong> — agree on what types of changes are PM-safe</li>
-        <li><strong>Open draft PRs</strong> — don't mark ready until you've tested locally and your EM has signed off</li>
-      </ul>
-      <p>It's their house. You're a guest with a key.</p>
+      <p><strong>Total time: ~20 minutes. Zero engineer involvement.</strong></p>
     </section>
 
     <!-- 3 LESSONS -->
@@ -555,28 +554,26 @@
       <p>Between Claude, local tests, and engineer review, there are a lot of checkpoints before anything reaches prod. Try the change. Something has to go very wrong for bad code to get there.</p>
     </section>
 
-    <!-- MEMORY CAVEAT -->
+    <!-- CLOSING -->
+    <!-- CLOSING -->
     <section>
-      <span class="label">One More Thing</span>
-      <h2>Claude's memory is only as good as what's in it</h2>
-      <p>While setting up the live demo for this presentation, I hit an error Claude had solved before — but couldn't recognize, because the memory captured the fix without capturing when to apply it.</p>
-      <p>One nudge from me — <em>"didn't we have a workaround for this?"</em> — and it found the answer immediately.</p>
-      <div class="callout">
-        Claude holds the knowledge; you hold the context for when it applies. If something feels familiar, say so. If Claude keeps making the same mistake, check whether the memory was actually written and is specific enough to be useful next time.
-      </div>
+      <span class="label">Before You Go</span>
+      <h2>You don't need to become an engineer. <br> You just need to know when to call one</h2>
+
+      <p><strong>The small stuff no longer has to wait</strong><br>
+      Renaming a label, adding a column, reordering fields — these used to need precious engineering hours. Now they need you, Claude, and an hour (give or take).</p>
+
+      <p><strong>Use it to go further, not just faster</strong><br>
+      The PMs who get the most out of this aren't the ones who use it to go faster. They're the ones who use it to go further — asking better questions, scoping tickets more accurately, and shipping the small things so their engineers can focus on the hard ones.</p>
+
+      <p><strong>Every PR still needs an engineer's eyes</strong><br>
+      One thing to keep in mind: every PR still needs an engineer's eyes. The goal isn't to flood the review queue — it's to make sure what lands there is worth their time.</p>
+
+      <p><strong>Claude holds the knowledge — you hold the context</strong><br>
+      And one more: while setting up this demo, I hit an error Claude had solved before — but couldn't recognize, because the memory captured the fix without capturing when to apply it. One nudge from me — <em>"didn't we have a workaround for this?"</em> — and it found the answer immediately.</p>
+
+      
     </section>
-
-  </div>
-
-  <!-- CLOSING -->
-  <div class="closing">
-    <div class="container">
-      <p>Renaming a label, adding a column, reordering fields — these used to need precious engineering hours. Now they need you, Claude, and an hour (give or take).</p>
-      <p>The PMs who get the most out of this aren't the ones who use it to go faster. They're the ones who use it to go further — asking better questions, scoping tickets more accurately, and shipping the small things so their engineers can focus on the hard ones.</p>
-      <p>One caveat: every PR still needs an engineer's eyes. The goal isn't to flood their review queue — it's to make sure the things that land there are worth their time.</p>
-      <p>You don't need to become an engineer. You just need to know when to nag Claude and when to phone a friend.</p>
-    </div>
-  </div>
 
   </div><!-- end main-content -->
 
