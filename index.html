@@ -4,14 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stop Nagging Your Engineer</title>
+  <style>
+    #gate {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f9f9f7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    #gate .gate-inner {
+      text-align: center;
+      max-width: 400px;
+      padding: 0 24px;
+    }
+    #gate .gate-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgb(70, 196, 195);
+      margin-bottom: 20px;
+    }
+    #gate h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    #gate .gate-hint {
+      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 28px;
+    }
+    #gate input {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1rem;
+      border: 1px solid #e0e0db;
+      border-radius: 10px;
+      outline: none;
+      color: #1a1a1a;
+      background: #fff;
+      text-align: center;
+    }
+    #gate input:focus {
+      border-color: #1a1a1a;
+    }
+    #gate .gate-error {
+      color: #dc2626;
+      font-size: 0.85rem;
+      margin-top: 12px;
+      display: none;
+    }
+  </style>
   <script>
-    (function() {
-      var answer = prompt("Datavant Internal\n\nFinish the sentence: \"Stop nagging your ___.\"\n\n(case insensitive)");
-      if (!answer || answer.trim().toLowerCase() !== "engineer") {
-        document.write("<div style='font-family:sans-serif;text-align:center;padding:80px;'><h2>Access denied.</h2></div>");
-        document.close();
-      }
-    })();
+    document.addEventListener("DOMContentLoaded", function() {
+      var gate = document.getElementById("gate");
+      var content = document.getElementById("main-content");
+      var input = document.getElementById("gate-input");
+      var error = document.getElementById("gate-error");
+      input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+          if (input.value.trim().toLowerCase() === "engineer") {
+            gate.style.display = "none";
+            content.style.display = "block";
+          } else {
+            error.style.display = "block";
+            input.value = "";
+          }
+        }
+      });
+    });
   </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -270,6 +335,17 @@
 </head>
 <body>
 
+  <div id="gate">
+    <div class="gate-inner">
+      <div class="gate-eyebrow">Datavant Internal</div>
+      <h2>Finish the sentence: "Stop nagging your ___."</h2>
+      <input id="gate-input" type="text" placeholder="Type your answer..." autocomplete="off" />
+      <div id="gate-error" class="gate-error">Not quite — try again.</div>
+    </div>
+  </div>
+
+  <div id="main-content" style="display:none;">
+
   <div class="hero">
     <h1>Stop Nagging Your Engineer</h1>
     <p>How PMs can ship the small stuff themselves — and free engineers for the work that actually matters.</p>
@@ -494,6 +570,8 @@
       <p>You don't need to become an engineer. You just need to know when to nag Claude and when to phone a friend.</p>
     </div>
   </div>
+
+  </div><!-- end main-content -->
 
 </body>
 </html>
